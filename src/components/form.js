@@ -6,8 +6,8 @@ import Button from 'react-md/lib/Buttons/Button';
 const phoneText = 'Invalid phone number';
 const requiredText = 'This field is required';
 
-const required = value => (value ? undefined : requiredText);
-const phoneNumber = value =>
+const REQUIRED = value => (value ? undefined : requiredText);
+const PHONE_NUMBER = value =>
   (value && !/^(0|[1-9][0-9]{9})$/i.test(value)
     ? phoneText
     : undefined);
@@ -30,7 +30,7 @@ const renderField = field => (
   </div>
 );
 
-let ContactForm = ({ handleSubmit }) => (
+const ContactForm = ({ handleSubmit }) => (
   <form onSubmit={handleSubmit}>
     <Field
       name="firstName"
@@ -39,7 +39,7 @@ let ContactForm = ({ handleSubmit }) => (
       placeholder="enter your first name"
       type="text"
       required
-      validate={required}
+      validate={REQUIRED}
       component={renderField}
     />
     <Field
@@ -57,7 +57,7 @@ let ContactForm = ({ handleSubmit }) => (
       placeholder="enter your phone"
       type="tel"
       required
-      validate={[required, phoneNumber]}
+      validate={[REQUIRED, PHONE_NUMBER]}
       component={renderField}
     />
     <Field
