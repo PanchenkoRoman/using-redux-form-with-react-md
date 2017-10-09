@@ -3,13 +3,13 @@ import { Field, reduxForm } from 'redux-form';
 import TextField from 'react-md/lib/TextFields';
 import Button from 'react-md/lib/Buttons/Button';
 
-const phoneText = 'Invalid phone number';
-const requiredText = 'This field is required';
+const PHONE_TEXT = 'Invalid phone number';
+const REQUIRED_TEXT = 'This field is required';
 
-const REQUIRED = value => (value ? undefined : requiredText);
-const PHONE_NUMBER = value =>
+const required = value => (value ? undefined : PHONE_TEXT);
+const phoneNumber = value =>
   (value && !/^(0|[1-9][0-9]{9})$/i.test(value)
-    ? phoneText
+    ? REQUIRED_TEXT
     : undefined);
 
 
@@ -39,7 +39,7 @@ const ContactForm = ({ handleSubmit }) => (
       placeholder="enter your first name"
       type="text"
       required
-      validate={REQUIRED}
+      validate={required}
       component={renderField}
     />
     <Field
@@ -57,7 +57,7 @@ const ContactForm = ({ handleSubmit }) => (
       placeholder="enter your phone"
       type="tel"
       required
-      validate={[REQUIRED, PHONE_NUMBER]}
+      validate={[required, phoneNumber]}
       component={renderField}
     />
     <Field
