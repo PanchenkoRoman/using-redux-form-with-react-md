@@ -30,7 +30,7 @@ const renderField = field => (
   </div>
 );
 
-const ContactForm = ({ handleSubmit }) => (
+let ContactForm = ({ handleSubmit }) => (
   <form onSubmit={handleSubmit}>
     <Field
       name="firstName"
